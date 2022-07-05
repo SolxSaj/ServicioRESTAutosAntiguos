@@ -69,7 +69,15 @@ class OriginalidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $originalidad = Originalidad::findOrFail($request->id);
+        $originalidad->idOriginalidad = $request->idOriginalidad;
+        $originalidad->nombre = $request->nombre;
+        $originalidad->siglas = $request->siglas;
+        $originalidad->descripcion = $request->descripcion;
+
+        $originalidad->save();
+
+        return $originalidad;
     }
 
     /**

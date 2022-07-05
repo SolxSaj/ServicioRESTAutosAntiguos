@@ -69,7 +69,14 @@ class FuncionalidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $funcionalidad = Funcionalidad::findOrFail($request->id);
+        $funcionalidad->idFuncional = $request->idFuncional;
+        $funcionalidad->criterio = $request->criterio;
+        $funcionalidad->descripcion = $request->descripcion;
+
+        $funcionalidad->save();
+
+        return $funcionalidad;
     }
 
     /**

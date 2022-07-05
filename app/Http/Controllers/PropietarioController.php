@@ -69,7 +69,13 @@ class PropietarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $propietario = Propietario::findOrFail($request->id);
+        $propietario->idPropietario = $request->idPropietario;
+        $propietario->nombre = $request->nombre;
+
+        $propietario->save();
+
+        return $propietario;
     }
 
     /**

@@ -69,7 +69,20 @@ class VehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $vehiculo = Vehiculo::findOrFail($request->id);
+        $vehiculo->idVehiculo = $request->idVehiculo;
+        $vehiculo->marca = $request->marca;
+        $vehiculo->submarca = $request->submarca;
+        $vehiculo->modelo = $request->modelo;
+        $vehiculo->tipo = $request->tipo;
+        $vehiculo->numSerie = $request->numSerie;
+        $vehiculo->holograma = $request->holograma;
+        $vehiculo->idPropietario = $request->idPropietario;
+        $vehiculo->idSegmento = $request->idSegmento;
+
+        $vehiculo->save();
+
+        return $vehiculo;
     }
 
     /**
