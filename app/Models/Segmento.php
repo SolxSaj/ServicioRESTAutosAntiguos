@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Segmento extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'idSegmento',
+        'nombre'
+    ];
 }
