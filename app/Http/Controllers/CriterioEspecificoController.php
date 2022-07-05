@@ -69,7 +69,17 @@ class CriterioEspecificoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $criterioEspecifico = CriteriosEspecificos::findOrFail($request->id);
+        $criterioEspecifico->idCritEspecifico = $request->idCritEspecifico;
+        $criterioEspecifico->nombre = $request->nombre;
+        $criterioEspecifico->observacion = $request->observacion;
+        $criterioEspecifico->idOriginalidad = $request->idOriginalidad;
+        $criterioEspecifico->idEvFuncion = $request->idEvFuncion;
+        $criterioEspecifico->idAreaEspecifica = $request->idAreaEspecifica;
+
+        $criterioEspecifico->save();
+
+        return $criterioEspecifico;
     }
 
     /**
