@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Vehiculo extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'idVehiculo',
+        'marca',
+        'submarca',
+        'modelo',
+        'tipo',
+        'numSerie',
+        'holograma',
+        'idPropietario',
+        'idSegmento'
+    ];
 }

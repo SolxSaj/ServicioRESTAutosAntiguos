@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Criterio extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'idCriterio',
+        'criterio',
+        'idAreaEspecifica'
+    ];
 }
