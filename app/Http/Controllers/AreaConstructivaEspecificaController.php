@@ -14,7 +14,8 @@ class AreaConstructivaEspecificaController extends Controller
      */
     public function index()
     {
-        //
+        $areaConstructivaEspecifica = AreaConstructivaEspecifica::all();
+        return $areaConstructivaEspecifica;
     }
 
     /**
@@ -78,8 +79,9 @@ class AreaConstructivaEspecificaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $areaConstructivaEspecifica = AreaConstructivaEspecifica::destroy($request->idAreaEspecifica);
+        return $areaConstructivaEspecifica;
     }
 }

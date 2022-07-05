@@ -14,7 +14,8 @@ class CriterioController extends Controller
      */
     public function index()
     {
-        //
+        $criterio = Criterio::all();
+        return $criterio;
     }
 
     /**
@@ -78,8 +79,9 @@ class CriterioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $criterio = Criterio::destroy($request->idCriterio);
+        return $criterio;
     }
 }

@@ -14,7 +14,8 @@ class CriterioEspecificoController extends Controller
      */
     public function index()
     {
-        //
+        $criterioEspecifico = CriteriosEspecificos::all();
+        return $criterioEspecifico;
     }
 
     /**
@@ -78,8 +79,9 @@ class CriterioEspecificoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $criterioEspecifico = CriteriosEspecificos::destroy($request->idCritEspecifico);
+        return $criterioEspecifico;
     }
 }

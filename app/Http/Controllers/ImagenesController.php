@@ -14,7 +14,8 @@ class ImagenesController extends Controller
      */
     public function index()
     {
-        //
+        $imagen = Imagenes::all();
+        return $imagen;
     }
 
     /**
@@ -78,8 +79,9 @@ class ImagenesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $imagen = Imagenes::destroy($request->idImagen);
+        return $imagen;
     }
 }

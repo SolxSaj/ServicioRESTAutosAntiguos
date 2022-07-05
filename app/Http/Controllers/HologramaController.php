@@ -14,7 +14,8 @@ class HologramaController extends Controller
      */
     public function index()
     {
-        //
+        $holograma = Holograma::all();
+        return $holograma;
     }
 
     /**
@@ -78,8 +79,9 @@ class HologramaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $holograma = Holograma::destroy($request->idHolograma);
+        return $holograma;
     }
 }

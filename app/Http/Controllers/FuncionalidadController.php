@@ -14,7 +14,8 @@ class FuncionalidadController extends Controller
      */
     public function index()
     {
-        //
+        $funcionalidad = Funcionalidad::all();
+        return $funcionalidad;
     }
 
     /**
@@ -78,8 +79,9 @@ class FuncionalidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $funcionalidad = Funcionalidad::destroy($request->idEvFuncional);
+        return $funcionalidad;
     }
 }

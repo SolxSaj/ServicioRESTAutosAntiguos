@@ -14,7 +14,8 @@ class PropietarioController extends Controller
      */
     public function index()
     {
-        //
+        $propietario = Propietario::all();
+        return $propietario;
     }
 
     /**
@@ -78,8 +79,9 @@ class PropietarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $propietario = Propietario::destroy($request->idPropietario);
+        return $propietario;
     }
 }

@@ -14,7 +14,8 @@ class SegmentoController extends Controller
      */
     public function index()
     {
-        //
+        $segmento = Segmento::all();
+        return $segmento;
     }
 
     /**
@@ -78,8 +79,9 @@ class SegmentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $segmento = Segmento::destroy($request->idSegmento);
+        return $segmento;
     }
 }

@@ -14,7 +14,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $vehiculo = Vehiculo::all();
+        return $vehiculo;
     }
 
     /**
@@ -78,8 +79,9 @@ class VehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $vehiculo = Vehiculo::destroy($request->idVehiculo);
+        return $vehiculo;
     }
 }

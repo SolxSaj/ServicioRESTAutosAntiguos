@@ -14,7 +14,8 @@ class CitasController extends Controller
      */
     public function index()
     {
-        //
+        $citas = Citas::all();
+        return $citas;
     }
 
     /**
@@ -78,8 +79,9 @@ class CitasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $citas = Citas::destroy($request->idCita);
+        return $citas;
     }
 }

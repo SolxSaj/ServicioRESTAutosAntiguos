@@ -14,7 +14,8 @@ class EvaluacionVehiculoController extends Controller
      */
     public function index()
     {
-        //
+        $evaluacionVehiculo = EvaluacionVehiculo::all();
+        return $evaluacionVehiculo;
     }
 
     /**
@@ -78,8 +79,9 @@ class EvaluacionVehiculoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $evaluacionVehiculo = EvaluacionVehiculo::destroy($request->idEvaluacion);
+        return $evaluacionVehiculo;
     }
 }

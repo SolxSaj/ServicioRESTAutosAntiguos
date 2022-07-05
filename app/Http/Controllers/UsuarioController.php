@@ -14,7 +14,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        $usuario = Usuario::all();
+        return $usuario;
     }
 
     /**
@@ -78,8 +79,9 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $usuario = Usuario::destroy($request->idUsuario);
+        return $usuario;
     }
 }

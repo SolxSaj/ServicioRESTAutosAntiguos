@@ -14,7 +14,8 @@ class OriginalidadController extends Controller
      */
     public function index()
     {
-        //
+        $originalidad = Originalidad::all();
+        return $originalidad;
     }
 
     /**
@@ -78,8 +79,9 @@ class OriginalidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $originalidad = Originalidad::destroy($request->idOriginalidad);
+        return $originalidad;
     }
 }
