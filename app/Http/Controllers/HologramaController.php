@@ -70,7 +70,13 @@ class HologramaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $holograma = Holograma::findOrFail($request->id);
+        $holograma->idHolograma = $request->idHolograma;
+        $holograma->holograma = $request->holograma;
+
+        $holograma->save();
+
+        return $holograma;
     }
 
     /**

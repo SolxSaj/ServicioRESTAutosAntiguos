@@ -70,7 +70,15 @@ class CitasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cita = Citas::findOrFail($request->id);
+        $cita->idCita = $request->idCita;
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->idPropietario = $request->idPropietario;
+
+        $cita->save();
+
+        return $cita;
     }
 
     /**

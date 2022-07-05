@@ -70,7 +70,14 @@ class ImagenesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $imagenes = Imagenes::findOrFail($request->id);
+        $imagenes->idImagen = $request->idImagen;
+        $imagenes->imagen = $request->imagen;
+        $imagenes->idArea = $request->idArea;
+
+        $imagenes->save();
+
+        return $imagenes;
     }
 
     /**

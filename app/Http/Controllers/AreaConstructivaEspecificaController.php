@@ -70,7 +70,16 @@ class AreaConstructivaEspecificaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $areaConstructivaEspecifica = AreaConstructivaEspecifica::findOrFail($request->id);
+        $areaConstructivaEspecifica->idAreaEspecifica = $request->idAreaEspecifica;
+        $areaConstructivaEspecifica->nombre = $request->nombre;
+        $areaConstructivaEspecifica->totalOriginalidad = $request->totalOriginalidad;
+        $areaConstructivaEspecifica->totalFuncionalidad = $request->totalFuncionalidad;
+        $areaConstructivaEspecifica->idArea = $request->idArea;
+
+        $areaConstructivaEspecifica->save();
+
+        return $areaConstructivaEspecifica;
     }
 
     /**

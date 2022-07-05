@@ -70,7 +70,13 @@ class SegmentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $segmento = Segmento::findOrFail($request->id);
+        $segmento->idSegmento = $request->idSegmento;
+        $segmento->nombre = $request->nombre;
+
+        $segmento->save();
+
+        return $segmento;
     }
 
     /**

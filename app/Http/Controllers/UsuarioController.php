@@ -70,7 +70,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = Usuario::findOrFail($request->id);
+        $usuario->idUsuario = $request->idUsuario;
+        $usuario->usuario = $request->usuario;
+        $usuario->password = $request->password;
+
+        $usuario->save();
+
+        return $usuario;
     }
 
     /**

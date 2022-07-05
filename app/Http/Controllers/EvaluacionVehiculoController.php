@@ -70,7 +70,15 @@ class EvaluacionVehiculoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $evaluacionVehiculo = EvaluacionVehiculo::findOrFail($request->id);
+        $evaluacionVehiculo->idEvaluacion = $request->idEvaluacion;
+        $evaluacionVehiculo->folio = $request->folio;
+        $evaluacionVehiculo->version = $request->version;
+        $evaluacionVehiculo->idVehiculo = $request->idVehiculo;
+
+        $evaluacionVehiculo->save();
+
+        return $evaluacionVehiculo;
     }
 
     /**

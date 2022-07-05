@@ -70,7 +70,14 @@ class CriterioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $criterio = Criterio::findOrFail($request->id);
+        $criterio->idCriterio = $request->idCriterio;
+        $criterio->criterio = $request->criterio;
+        $criterio->idAreaEspecifica = $request->idAreaEspecifica;
+
+        $criterio->save();
+
+        return $criterio;
     }
 
     /**
