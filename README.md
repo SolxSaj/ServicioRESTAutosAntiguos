@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+# ServicioRESTAutosAntiguos
+Servicio REST para control de base de datos del sistema para chequeo de vehículos antiguos
+=======
+>>>>>>> 65b99000ecdfd9e1754056c904b23975407c5a18
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
@@ -62,3 +69,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<<<<<<< HEAD
+=======
+>>>>>>> 16e2fe6 (Creación de modelos)
+>>>>>>> 65b99000ecdfd9e1754056c904b23975407c5a18
