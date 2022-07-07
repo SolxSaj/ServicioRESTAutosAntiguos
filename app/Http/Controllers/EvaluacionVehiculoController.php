@@ -36,7 +36,13 @@ class EvaluacionVehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $evaluacionVehiculo = new EvaluacionVehiculo();
+        $evaluacionVehiculo->idEvaluacion = $request->idEvaluacion;
+        $evaluacionVehiculo->folio = $request->folio;
+        $evaluacionVehiculo->version = $request->version;
+        $evaluacionVehiculo->idVehiculo = $request->idVehiculo;
+
+        $evaluacionVehiculo->save();
     }
 
     /**

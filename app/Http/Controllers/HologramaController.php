@@ -36,7 +36,11 @@ class HologramaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $holograma = new Holograma();
+        $holograma->idHolograma = $request->idHolograma;
+        $holograma->holograma = $request->holograma;
+
+        $holograma->save();
     }
 
     /**

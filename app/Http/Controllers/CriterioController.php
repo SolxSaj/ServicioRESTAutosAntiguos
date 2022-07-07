@@ -36,7 +36,12 @@ class CriterioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $criterio = new Criterio();
+        $criterio->idCriterio = $request->idCriterio;
+        $criterio->criterio = $request->criterio;
+        $criterio->idAreaEspecifica = $request->idAreaEspecifica;
+
+        $criterio->save();
     }
 
     /**

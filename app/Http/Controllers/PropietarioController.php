@@ -36,7 +36,11 @@ class PropietarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $propietario = new Propietario();
+        $propietario->idPropietario = $request->idPropietario;
+        $propietario->nombre = $request->nombre;
+
+        $propietario->save();
     }
 
     /**

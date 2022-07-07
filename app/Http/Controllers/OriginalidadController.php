@@ -36,7 +36,13 @@ class OriginalidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $originalidad = new Originalidad();
+        $originalidad->idOriginalidad = $request->idOriginalidad;
+        $originalidad->nombre = $request->nombre;
+        $originalidad->siglas = $request->siglas;
+        $originalidad->descripcion = $request->descripcion;
+
+        $originalidad->save();
     }
 
     /**

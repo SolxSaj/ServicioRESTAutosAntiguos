@@ -36,7 +36,12 @@ class ImagenesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $imagenes = new Imagenes();
+        $imagenes->idImagen = $request->idImagen;
+        $imagenes->imagen = $request->imagen;
+        $imagenes->idArea = $request->idArea;
+
+        $imagenes->save();
     }
 
     /**

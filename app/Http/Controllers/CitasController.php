@@ -36,7 +36,14 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cita = new Citas();
+        $cita->idCita = $request->idCita;
+        $cita->fecha = $request->fecha;
+        $cita->hora = $request->hora;
+        $cita->idPropietario = $request->idPropietario;
+
+        $cita->save();
+
     }
 
     /**

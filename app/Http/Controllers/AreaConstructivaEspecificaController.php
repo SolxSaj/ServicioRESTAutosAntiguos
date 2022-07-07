@@ -36,7 +36,16 @@ class AreaConstructivaEspecificaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $areaConstructivaEspecifica = new AreaConstructivaEspecifica();
+        $areaConstructivaEspecifica->idAreaEspecifica = $request->idAreaEspecifica;
+        $areaConstructivaEspecifica->nombre = $request->nombre;
+        $areaConstructivaEspecifica->totalOriginalidad = $request->totalOriginalidad;
+        $areaConstructivaEspecifica->totalFuncionalidad = $request->totalFuncionalidad;
+        $areaConstructivaEspecifica->idArea = $request->idArea;
+
+        $areaConstructivaEspecifica->save();
+
+        return $areaConstructivaEspecifica;
     }
 
     /**

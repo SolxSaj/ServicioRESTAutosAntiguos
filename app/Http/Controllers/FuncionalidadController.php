@@ -36,7 +36,12 @@ class FuncionalidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $funcionalidad = new Funcionalidad();
+        $funcionalidad->idFuncional = $request->idFuncional;
+        $funcionalidad->criterio = $request->criterio;
+        $funcionalidad->descripcion = $request->descripcion;
+
+        $funcionalidad->save();
     }
 
     /**

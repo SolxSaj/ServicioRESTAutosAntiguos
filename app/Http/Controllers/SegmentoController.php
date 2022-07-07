@@ -36,7 +36,11 @@ class SegmentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $segmento = new Segmento();
+        $segmento->idSegmento = $request->idSegmento;
+        $segmento->nombre = $request->nombre;
+
+        $segmento->save();
     }
 
     /**
