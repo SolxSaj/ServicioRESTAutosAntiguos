@@ -1,0 +1,26 @@
+body{
+    background-color: #EEEEEE;
+   
+}
+#app{
+  background-color: #EEEEEE;
+}
+#content{
+    margin: 1% 2% 1% 2%;
+    border-radius: 3%;
+    
+}
+
+#content1{
+    padding-top: 4%;
+    padding-left: 6%;
+    overflow: hidden;
+}
+#content-Title{
+    float: left;
+    padding-top: 6%;
+    padding-left: 10%;
+}
+#content-img{
+    float: left;
+}

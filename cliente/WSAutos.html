@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <div id="app">
+    <v-app id="content">
+      <v-main>
+
+
+        <v-flex class="text-center align-center" id="content1">
+          <div id="content-img">
+            <v-img max-width="300" src="equipo.png"></v-img>
+          </div>
+          <div id="content-Title">
+            <p class=" font-weight-bold display-2">PANEL DE CONTROL DE LOS USUARIOS</p><br>
+            <v-btn class=" pa-5 cyan darken-3" block dark color="#00B0FF" @click="formNuevo()">
+              <v-icon dark>mdi-plus</v-icon>Agregar nuevo usuario
+            </v-btn>
+          </div>
+        </v-flex>
+        <v-card class="mx-auto mt-5" max-width="1280" elevation="8">
+          <!-- Tabla y formulario -->
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr class="cyan darken-3">
+                  <th class="white--text text-center">NO.</th>
+                  <th class="white--text text-center">NOMBRE</th>
+                  <th class="white--text text-center">USUARIO</th>
+                  <th class="white--text text-center">CONSTRASEÑA</th>
+                  <th class="white--text text-center">FECHA DE REGISTRO</th>
+                  <th class="white--text text-center">ACCIONES</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr v-for="usuario in usuarios" :key="usuarios.idUsuario">
+                  <td class=" font-weight-bold text-center">{{ usuario.idUsuario}}</td>
+                  <td class=" font-weight-bold text-center">{{ usuario.nombre}}</td>
+                  <td class=" font-weight-bold text-center">{{ usuario.user }}</td>
+                  <td class=" font-weight-bold text-center">{{ usuario.password }}</td>
+                  <td class=" font-weight-bold text-center">{{ usuario.created_at }}</td>
+                  <td class=" text-center">
+                    <v-btn dark class="amber darken-3" small @click="formEditar(usuario.idUsuario, usuario.nombre, usuario.user, usuario.password)">
+                      <v-icon>mdi-pencil</v-icon>Editar
+                    </v-btn>
+                    <v-btn dark class="red accent-3" small @click="borrar(usuario.idUsuario)">
+                      <v-icon>mdi-delete</v-icon>Eliminar
+                    </v-btn>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-card>
+
+        <v-dialog v-model="dialog" max-width="500">
+          <v-card>
+            <v-card-title class="cyan darken-3 white--text">FORMULARIO DE LOS USUARIOS</v-card-title>
+            <v-card-text>
+              <v-form>
+                <v-container>
+                  <input v-model="usuario.idUsuario" hidden></input>
+                  <v-text-field v-model="usuario.nombre" label="Ingrese el nombre" solo required>{{usuario.nombre}}</v-text-field>
+                  <v-text-field v-model="usuario.user" label="Ingrese un alias de usuario" solo required>
+                  </v-text-field>
+                  <v-text-field v-model="usuario.password" label="Ingrese una contraseña" solo required></v-text-field>
+                </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="dialog=false" dark class="amber darken-3">Cancelar</v-btn>
+              <v-btn @click="guardar()" type="submit" color="teal" dark>Guardar</v-btn>
+            </v-card-actions>
+            </v-form>
+          </v-card>
+        </v-dialog>
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/2.5.7/vuetify.min.js"
+    integrity="sha512-BPXn+V2iK/Zu6fOm3WiAdC1pv9uneSxCCFsJHg8Cs3PEq6BGRpWgXL+EkVylCnl8FpJNNNqvY+yTMQRi4JIfZA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+    integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    //? hacemos referencia a nuestro recursos de la api
+    let url = 'http://127.0.0.1:8000/api/usuarios/';
+
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data() {
+        return {
+          usuarios: [],
+          dialog: false,
+          operacion: '',
+          usuario: {
+            idUsuario: null,
+            nombre: '',
+            user: '',
+            password: ''
+          }
+        }
+      },
+      created() {
+        this.mostrar()
+      },
+      methods: {
+        //MÉTODOS PARA EL CRUD
+        mostrar: function () {
+          axios.get(url)
+            .then(response => {
+              this.usuarios = response.data;
+            })
+        },
+        crear: function () {
+          let parametros = { nombre: this.usuario.nombre, user: this.usuario.user, password: this.usuario.password };
+          axios.post(url, parametros)
+            .then(response => {
+              this.mostrar();
+            });
+            this.usuario.nombre = "";
+            this.usuario.user = "";
+            this.usuario.password = "";
+        },
+        editar: function () {
+          let parametros = {nombre: this.usuario.nombre, user: this.usuario.user, password: this.usuario.password, idUsuario: this.usuario.idUsuario};
+          axios.put(url + this.usuario.idUsuario, parametros)
+            .then(response => {
+              this.mostrar();
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        },
+        borrar: function (id) {
+          Swal.fire({
+            title: '¿Confirma eliminar el registro?',
+            confirmButtonText: `Confirmar`,
+            showCancelButton: true,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              //procedimiento borrar
+              axios.delete(url + id)
+                .then(response => {
+                  this.mostrar();
+                });
+              Swal.fire('¡Eliminado!', '', 'success')
+            } else if (result.isDenied) {
+            }
+          });
+        },
+
+        //Botones y formularios
+        guardar: function () {
+          if (this.operacion == 'crear') {
+            this.crear();
+          }
+          if (this.operacion == 'editar') {
+            this.editar();
+          }
+          this.dialog = false;
+        },
+        formNuevo: function () {
+          this.dialog = true;
+          this.operacion = 'crear';
+          this.usuario.nombre = '';
+          this.usuario.user = '';
+          this.usuario.password = '';
+        },
+        formEditar: function (idUsuario, nombre, user, password) {
+          //capturamos los datos del registro seleccionado y los mostramos en el formulario
+          this.usuario.idUsuario = idUsuario;
+          this.usuario.nombre = nombre;
+          this.usuario.user = user;
+          this.usuario.password = password;
+          this.dialog = true;
+          this.operacion = 'editar';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -38,7 +38,8 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario();
         $usuario->idUsuario = $request->idUsuario;
-        $usuario->usuario = $request->usuario;
+        $usuario->nombre = $request->nombre;
+        $usuario->user = $request->user;
         $usuario->password = $request->password;
 
         $usuario->save();
@@ -73,15 +74,15 @@ class UsuarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $usuario = Usuario::findOrFail($request->id);
-        $usuario->idUsuario = $request->idUsuario;
-        $usuario->usuario = $request->usuario;
+        $usuario = Usuario::findOrFail($request->idUsuario);
+        
+        $usuario->nombre = $request->nombre;
+        $usuario->user = $request->user;
         $usuario->password = $request->password;
-
         $usuario->save();
-
+        print($usuario);
         return $usuario;
     }
 
