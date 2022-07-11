@@ -38,7 +38,6 @@ class UsuarioController extends Controller
     {
         $usuario = new Usuario();
         $usuario->idUsuario = $request->idUsuario;
-        $usuario->nombre = $request->nombre;
         $usuario->user = $request->user;
         $usuario->password = $request->password;
 
@@ -76,14 +75,14 @@ class UsuarioController extends Controller
      */
     public function update(Request $request)
     {
+
         $usuario = Usuario::findOrFail($request->idUsuario);
         
-        $usuario->nombre = $request->nombre;
-        $usuario->user = $request->user;
+        $usuario->usuario = $request->usuario;
         $usuario->password = $request->password;
         $usuario->save();
-        print($usuario);
         return $usuario;
+
     }
 
     /**
