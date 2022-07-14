@@ -37,7 +37,7 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         $usuario = new Usuario();
-        $usuario->idUsuario = $request->idUsuario;
+        $usuario->id = $request->id;
         $usuario->user = $request->user;
         $usuario->password = $request->password;
 
@@ -76,9 +76,9 @@ class UsuarioController extends Controller
     public function update(Request $request)
     {
 
-        $usuario = Usuario::findOrFail($request->idUsuario);
+        $usuario = Usuario::findOrFail($request->id);
         
-        $usuario->usuario = $request->usuario;
+        $usuario->user = $request->user;
         $usuario->password = $request->password;
         $usuario->save();
         return $usuario;
@@ -93,7 +93,7 @@ class UsuarioController extends Controller
      */
     public function destroy(Request $request)
     {
-        $usuario = Usuario::destroy($request->idUsuario);
+        $usuario = Usuario::destroy($request->id);
         return $usuario;
     }
 }

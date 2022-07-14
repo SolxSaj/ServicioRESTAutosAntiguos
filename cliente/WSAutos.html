@@ -151,7 +151,7 @@
               console.log(error);
             });
         },
-        borrar: function (id) {
+        borrar: function (idUsuario) {
           Swal.fire({
             title: '¿Confirma eliminar el registro?',
             confirmButtonText: `Confirmar`,
@@ -159,7 +159,7 @@
           }).then((result) => {
             if (result.isConfirmed) {
               //procedimiento borrar
-              axios.delete(url + id)
+              axios.delete(url + idUsuario)
                 .then(response => {
                   this.mostrar();
                 });
