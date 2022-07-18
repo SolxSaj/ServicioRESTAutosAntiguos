@@ -37,7 +37,7 @@ class VehiculoController extends Controller
     public function store(Request $request)
     {
         $vehiculo = new Vehiculo();
-        $vehiculo->idVehiculo = $request->idVehiculo;
+        $vehiculo->id = $request->id;
         $vehiculo->marca = $request->marca;
         $vehiculo->submarca = $request->submarca;
         $vehiculo->modelo = $request->modelo;
@@ -82,7 +82,6 @@ class VehiculoController extends Controller
     public function update(Request $request, $id)
     {
         $vehiculo = Vehiculo::findOrFail($request->id);
-        $vehiculo->idVehiculo = $request->idVehiculo;
         $vehiculo->marca = $request->marca;
         $vehiculo->submarca = $request->submarca;
         $vehiculo->modelo = $request->modelo;
@@ -105,7 +104,7 @@ class VehiculoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $vehiculo = Vehiculo::destroy($request->idVehiculo);
+        $vehiculo = Vehiculo::destroy($request->id);
         return $vehiculo;
     }
 }

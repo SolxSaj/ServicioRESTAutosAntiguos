@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Propietario extends Model
 {
     use HasFactory;
+    protected $table = "propietario";
     protected $fillable = [
-        'idPropietario',
+        'id',
         'nombre'
     ];
 }

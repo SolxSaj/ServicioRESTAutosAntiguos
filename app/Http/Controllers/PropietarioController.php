@@ -37,7 +37,7 @@ class PropietarioController extends Controller
     public function store(Request $request)
     {
         $propietario = new Propietario();
-        $propietario->idPropietario = $request->idPropietario;
+        $propietario->id = $request->id;
         $propietario->nombre = $request->nombre;
 
         $propietario->save();
@@ -75,7 +75,6 @@ class PropietarioController extends Controller
     public function update(Request $request, $id)
     {
         $propietario = Propietario::findOrFail($request->id);
-        $propietario->idPropietario = $request->idPropietario;
         $propietario->nombre = $request->nombre;
 
         $propietario->save();
@@ -91,7 +90,7 @@ class PropietarioController extends Controller
      */
     public function destroy(Request $request)
     {
-        $propietario = Propietario::destroy($request->idPropietario);
+        $propietario = Propietario::destroy($request->id);
         return $propietario;
     }
 }
