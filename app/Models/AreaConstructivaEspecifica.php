@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AreaConstructivaEspecifica extends Model
 {
     use HasFactory;
+    protected $table = "areaconstructivaespecifica";
     protected $fillable = [
-        'idAreaEspecifica',
+        'id',
         'nombre',
         'totalOriginalidad',
         'totalFuncionalidad',

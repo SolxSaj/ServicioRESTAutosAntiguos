@@ -8,12 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class CriteriosEspecificos extends Model
 {
     use HasFactory;
+    protected $table = "criteriosespecificos";
     protected $fillable = [
         'idCritEspecifico',
         'nombre',
         'observacion',
-        'idOriginalidad',
-        'idEvFuncion',
+        'originalidad',
+        'evaluacion',
         'idAreaEspecifica'
     ];
 }
