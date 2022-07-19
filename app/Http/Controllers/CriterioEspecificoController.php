@@ -17,8 +17,9 @@ class CriterioEspecificoController extends Controller
         $criterioEspecifico = CriteriosEspecificos::join("areaconstructivaespecifica", "criteriosespecificos.idAreaEspecifica", "=", "areaconstructivaespecifica.id")
                                                     ->join("areaconstructiva", "areaconstructivaespecifica.idArea", "=", "areaconstructiva.id")
                                                     ->join("evaluacionvehiculo", "areaconstructiva.idEvaluacion", "=", "evaluacionvehiculo.id")
+                                                    ->select("criteriosespecificos.id", "criteriosespecificos.nombreCriterio", "criteriosespecificos.observacion", "criteriosespecificos.originalidad", "criteriosespecificos.evaluacion")
                                                     ->where('evaluacionvehiculo.folio', '=', '1F17AB')
-                                                    ->get("criteriosespecificos.*");
+                                                    ->get();
         return $criterioEspecifico;
     }
 
