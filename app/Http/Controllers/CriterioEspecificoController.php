@@ -14,7 +14,11 @@ class CriterioEspecificoController extends Controller
      */
     public function index()
     {
-        $criterioEspecifico = CriteriosEspecificos::all();
+        $criterioEspecifico = CriteriosEspecificos::join("areaconstructivaespecifica", "criteriosespecificos.idAreaEspecifica", "=", "areaconstructivaespecifica.id")
+                                                    ->join("areaconstructiva", "areaconstructivaespecifica.idArea", "=", "areaconstructiva.id")
+                                                    ->join("evaluacionvehiculo", "areaconstructiva.idEvaluacion", "=", "evaluacionvehiculo.id")
+                                                    ->where('evaluacionvehiculo.folio', '=', '1F17AB')
+                                                    ->get("criteriosespecificos.*");
         return $criterioEspecifico;
     }
 
@@ -37,11 +41,11 @@ class CriterioEspecificoController extends Controller
     public function store(Request $request)
     {
         $criterioEspecifico = new CriteriosEspecificos();
-        $criterioEspecifico->idCritEspecifico = $request->idCritEspecifico;
-        $criterioEspecifico->nombre = $request->nombre;
+        $criterioEspecifico->id = $request->id;
+        $criterioEspecifico->nombreCriterio = $request->nombreCriterio;
         $criterioEspecifico->observacion = $request->observacion;
-        $criterioEspecifico->idOriginalidad = $request->idOriginalidad;
-        $criterioEspecifico->idEvFuncion = $request->idEvFuncion;
+        $criterioEspecifico->originalidad = $request->originalidad;
+        $criterioEspecifico->evaluacion = $request->evaluacion;
         $criterioEspecifico->idAreaEspecifica = $request->idAreaEspecifica;
 
         $criterioEspecifico->save();
@@ -79,11 +83,11 @@ class CriterioEspecificoController extends Controller
     public function update(Request $request, $id)
     {
         $criterioEspecifico = CriteriosEspecificos::findOrFail($request->id);
-        $criterioEspecifico->idCritEspecifico = $request->idCritEspecifico;
-        $criterioEspecifico->nombre = $request->nombre;
+        $criterioEspecifico->id = $request->id;
+        $criterioEspecifico->nombreCriterio = $request->nombreCriterio;
         $criterioEspecifico->observacion = $request->observacion;
-        $criterioEspecifico->idOriginalidad = $request->idOriginalidad;
-        $criterioEspecifico->idEvFuncion = $request->idEvFuncion;
+        $criterioEspecifico->originalidad = $request->originalidad;
+        $criterioEspecifico->evaluacion = $request->evaluacion;
         $criterioEspecifico->idAreaEspecifica = $request->idAreaEspecifica;
 
         $criterioEspecifico->save();
@@ -99,7 +103,7 @@ class CriterioEspecificoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $criterioEspecifico = CriteriosEspecificos::destroy($request->idCritEspecifico);
+        $criterioEspecifico = CriteriosEspecificos::destroy($request->id);
         return $criterioEspecifico;
     }
 }

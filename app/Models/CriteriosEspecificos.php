@@ -10,8 +10,8 @@ class CriteriosEspecificos extends Model
     use HasFactory;
     protected $table = "criteriosespecificos";
     protected $fillable = [
-        'idCritEspecifico',
-        'nombre',
+        'id',
+        'nombreCriterio',
         'observacion',
         'originalidad',
         'evaluacion',

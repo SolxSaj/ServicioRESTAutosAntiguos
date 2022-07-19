@@ -11,7 +11,7 @@ class AreaConstructivaEspecifica extends Model
     protected $table = "areaconstructivaespecifica";
     protected $fillable = [
         'id',
-        'nombre',
+        'nombreArea',
         'totalOriginalidad',
         'totalFuncionalidad',
         'idArea'
