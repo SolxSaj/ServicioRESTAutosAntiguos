@@ -36,18 +36,31 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        $vehiculo = new Vehiculo();
-        $vehiculo->id = $request->id;
-        $vehiculo->marca = $request->marca;
-        $vehiculo->submarca = $request->submarca;
-        $vehiculo->modelo = $request->modelo;
-        $vehiculo->tipo = $request->tipo;
-        $vehiculo->numSerie = $request->numSerie;
-        $vehiculo->holograma = $request->holograma;
-        $vehiculo->idPropietario = $request->idPropietario;
-        $vehiculo->idSegmento = $request->idSegmento;
 
-        $vehiculo->save();
+        $readings = $request->json()->all();
+        $count = 0;
+
+        foreach($readings as $vehiculo){
+            foreach($vehiculo as $campo){
+                /*$vehiculo = new Vehiculo();
+                $vehiculo->id = isset($campo["id"]);
+                $vehiculo->marca = $campo["marca"];
+                $vehiculo->submarca = $campo["submarca"];
+                $vehiculo->modelo = $campo["modelo"];
+                $vehiculo->tipo = $campo["tipo"];
+                $vehiculo->numSerie = $campo["numSerie"];
+                $vehiculo->holograma = $campo["holograma"];
+                $vehiculo->idPropietario = $campo["idPropietario"];
+                $vehiculo->idSegmento = $campo["idSegmento"];
+
+                $vehiculo->save();
+                $count = $count+1;*/
+            }
+        }
+
+        return $readings;
+
+
     }
 
     /**

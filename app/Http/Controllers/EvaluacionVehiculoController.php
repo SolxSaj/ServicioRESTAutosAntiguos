@@ -12,9 +12,26 @@ class EvaluacionVehiculoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(String $busqueda, String $parametro)
     {
-        $evaluacionVehiculo = EvaluacionVehiculo::all();
+        if($busqueda == "folio"){
+            $evaluacionVehiculo = EvaluacionVehiculo::where('folio', '=', $parametro)
+                                                    ->get();
+        }elseif($busqueda == "nombre"){
+            $evaluacionVehiculo = EvaluacionVehiculo::join("vehiculo", "evaluacionvehiculo.idVehiculo", "=", "vehiculo.id")
+                                                      ->join("propietario", "vehiculo.idPropietario", "=", "propietario.id")
+                                                      ->where("propietario.nombre", "=", $parametro)
+                                                      ->get("evaluacionvehiculo.*");
+        }elseif($busqueda == "id"){
+            $evaluacionVehiculo = EvaluacionVehiculo::where('id', '=', intval($parametro))
+                                                    ->get();
+        }elseif($busqueda == "serie"){
+            $evaluacionVehiculo = EvaluacionVehiculo::join("vehiculo", "evaluacionvehiculo.idVehiculo", "=", "vehiculo.id")
+                                                      ->where("vehiculo.numSerie", "=", $parametro)
+                                                      ->get("evaluacionvehiculo.*");
+        }else{
+            $evaluacionVehiculo = response("Registros no encontrados");
+        }
         return $evaluacionVehiculo;
     }
 

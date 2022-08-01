@@ -6,6 +6,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PropietarioController;
 use App\Http\Controllers\VehiculoController;
 use App\Http\Controllers\CriterioEspecificoController;
+use App\Http\Controllers\EvaluacionVehiculoController;
+use App\Models\EvaluacionVehiculo;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +39,7 @@ Route::post('/vehiculo', [VehiculoController::class, 'store']);
 Route::put('/vehiculo/{id}', [VehiculoController::class, 'update']);
 Route::delete('/vehiculo/{id}', [VehiculoController::class, 'destroy']);
 
-Route::get('/criterios', [CriterioEspecificoController::class, 'index']);
+Route::get('/criterios/{folio}', [CriterioEspecificoController::class, 'index']);
 Route::post('/criterios', [CriterioEspecificoController::class, 'store']);
+
+Route::get('/evaluacion/{busqueda}/{parametro}', [EvaluacionVehiculoController::class, 'index']);
