@@ -38,6 +38,11 @@ class EvaluacionVehiculoController extends Controller
         }else{
             $evaluacionVehiculo =  EvaluacionVehiculo::all();
         }
+
+        if($evaluacionVehiculo == "[]"){
+            $evaluacionVehiculo = response("[{\"Status\": \"Error 404\"}]");
+        }
+
         return $evaluacionVehiculo;
     }
 
