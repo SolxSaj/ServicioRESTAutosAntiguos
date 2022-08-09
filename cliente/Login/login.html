@@ -8,25 +8,25 @@
     <title>Formulario Login Animado</title>
 </head>
 <body>
-<div id="app">
-    <div class="form-body">
-        <img src="C:\xampp\htdocs\ServicioRESTAutosAntiguos\cliente\Login\Login.png" alt="user-login">
-        <p class="text">Bienvenido Ingresa Credenciales</p>
-        <form class="login-form" method="get">
-            <input type="text" placeholder="Email o nombre de usuario" name="user">
-            <input type="password" placeholder="Contraseña" name="password">
-            <button @click="validar()" type="submit">Iniciar Sesión</button>
-        </form>
-    </div>
+    <div id="app">
+        <div class="form-body">
+            <img src="C:\xampp\htdocs\ServicioRESTAutosAntiguos\cliente\Login\Login.png" alt="user-login">
+            <p class="text">Bienvenido Ingresa Credenciales</p>
+            <form class="login-form" method="get">
+                <input type="text" placeholder="Email o nombre de usuario" name="user">
+                <input type="password" placeholder="Contraseña" name="password">
+                <button @click="validar()" type="submit">Iniciar Sesión</button>
+            </form>
+        </div>
 
-    <tbody>
-        <tr v-for="usuario in usuarios" :key="usuario.id">
-            <td class=" font-weight-bold text-center">{{ usuario.id}}</td>
-            <td class=" font-weight-bold text-center">{{ usuario.user}}</td>
-            <td class=" font-weight-bold text-center">{{ usuario.password }}</td>
-          </tr>
+        <tbody>
+            <tr v-for="usuario in usuarios" :key="usuario.id">
+                <td class=" font-weight-bold text-center">{{ usuario.id}}</td>
+                <td class=" font-weight-bold text-center">{{ usuario.user}}</td>
+                <td class=" font-weight-bold text-center">{{ usuario.password }}</td>
+            </tr>
         </tbody>
-</div>
+    </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -67,6 +67,7 @@
                     axios.get(url + user + "/" + password)
                         .then(response =>{
                             this.usuarios = response.data;
+                            console.log(this.usuarios);
                         });
                 }
             }

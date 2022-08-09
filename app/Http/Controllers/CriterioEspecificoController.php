@@ -50,6 +50,8 @@ class CriterioEspecificoController extends Controller
         $criterioEspecifico->idAreaEspecifica = $request->idAreaEspecifica;
 
         $criterioEspecifico->save();
+
+        return response("[{\"Status\": \"Alta realizada\"}]");
     }
 
     /**
