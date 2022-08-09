@@ -35,6 +35,14 @@ class EvaluacionVehiculoController extends Controller
         return $evaluacionVehiculo;
     }
 
+    public static function getAreaByFolio(String $folio){
+        $areasConstructivas = EvaluacionVehiculo::join("areaconstructiva", "evaluacionvehiculo.id", "=", "areaconstructiva.idEvaluacion")
+            ->select("areaconstructiva.nombre", "areaconstructiva.maximo", "areaconstructiva.original", "areaconstructiva.funcionalidad", "areaconstructiva.sitActual", "areaconstructiva.sugerencias")
+            ->where('evaluacionvehiculo.folio', '=', $folio)
+            ->get();
+        return $areasConstructivas;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
