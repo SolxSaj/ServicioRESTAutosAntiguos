@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EvaluacionVehiculo;
 
+use function PHPUnit\Framework\isEmpty;
+
 class EvaluacionVehiculoController extends Controller
 {
     /**
@@ -16,22 +18,31 @@ class EvaluacionVehiculoController extends Controller
     {
         if($busqueda == "folio"){
             $evaluacionVehiculo = EvaluacionVehiculo::where('folio', '=', $parametro)
+                                                    ->select("id", "folio", "version", "idVehiculo")
                                                     ->get();
         }elseif($busqueda == "nombre"){
             $evaluacionVehiculo = EvaluacionVehiculo::join("vehiculo", "evaluacionvehiculo.idVehiculo", "=", "vehiculo.id")
                                                       ->join("propietario", "vehiculo.idPropietario", "=", "propietario.id")
                                                       ->where("propietario.nombre", "=", $parametro)
+                                                      ->select("evaluacionvehiculo.id", "evaluacionvehiculo.folio", "evaluacionvehiculo.version", "evaluacionvehiculo.idVehiculo")
                                                       ->get("evaluacionvehiculo.*");
         }elseif($busqueda == "id"){
             $evaluacionVehiculo = EvaluacionVehiculo::where('id', '=', intval($parametro))
-                                                    ->get();
+                                                      ->select("evaluacionvehiculo.id", "evaluacionvehiculo.folio", "evaluacionvehiculo.version", "evaluacionvehiculo.idVehiculo")
+                                                      ->get();
         }elseif($busqueda == "serie"){
             $evaluacionVehiculo = EvaluacionVehiculo::join("vehiculo", "evaluacionvehiculo.idVehiculo", "=", "vehiculo.id")
                                                       ->where("vehiculo.numSerie", "=", $parametro)
+                                                      ->select("evaluacionvehiculo.id", "evaluacionvehiculo.folio", "evaluacionvehiculo.version", "evaluacionvehiculo.idVehiculo")
                                                       ->get("evaluacionvehiculo.*");
         }else{
-            $evaluacionVehiculo = response("Registros no encontrados");
+            $evaluacionVehiculo =  EvaluacionVehiculo::all();
         }
+
+        if($evaluacionVehiculo == "[]"){
+            $evaluacionVehiculo = response("[{\"Status\": \"Error 404\"}]");
+        }
+
         return $evaluacionVehiculo;
     }
 

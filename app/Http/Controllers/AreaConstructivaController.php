@@ -12,9 +12,11 @@ class AreaConstructivaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(String $folio)
     {
-        $areaConstructiva = AreaConstructiva::all();
+        $areaConstructiva = AreaConstructiva::join("evaluacionvehiculo", "areaconstructiva.idEvaluacion", "=", "evaluacionvehiculo.id")
+                                              ->where('evaluacionvehiculo.folio', '=', $folio)
+                                              ->get();
         return $areaConstructiva;
     }
 

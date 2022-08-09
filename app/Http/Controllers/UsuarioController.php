@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Usuario;
+use Exception;
 
 class UsuarioController extends Controller
 {
@@ -12,9 +13,22 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(String $user, String $pass)
     {
-        $usuario = Usuario::all();
+        try{
+            $usuario = Usuario::where("user", "=", $user)
+                                ->where("password", "=", $pass)
+                                ->select("id", "user", "password")
+                                ->get();
+                                
+        }catch(Exception $e){
+            $usuario = response("Error de conexión");
+        }
+
+        if($usuario == "[]"){
+            $usuario = response("Usuario no encontrado");
+        }
+
         return $usuario;
     }
 
