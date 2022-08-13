@@ -1,0 +1,42 @@
+@page {
+    margin: 0cm 0cm;
+    font-family: Arial;
+}
+
+body {
+    margin: 4cm 1cm 3.5cm;
+    border: purple 2px solid;
+}
+
+.page-break {
+    page-break-after: always;
+}
+
+header {
+    position: fixed;
+    top: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 3cm;
+    color: purple;
+    text-align: center;
+    line-height: 30px;
+    border-top: purple 5px solid;
+    border-bottom: purple 5px solid;
+    margin-top: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    height: 3cm;
+    color: purple;
+    text-align: center;
+    line-height: 35px;
+}
+
+.first-page{
+    text-align: center;
+}

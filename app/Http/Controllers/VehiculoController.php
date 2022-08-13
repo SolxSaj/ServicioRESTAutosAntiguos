@@ -18,6 +18,15 @@ class VehiculoController extends Controller
         return $vehiculo;
     }
 
+    public static function getVehiculoById(int $id){
+        $vehiculo = Vehiculo::join("propietario", "vehiculo.idPropietario", "=", "propietario.id")
+            ->join("segmento", "vehiculo.idSegmento", "=", "segmento.id")
+            ->select("vehiculo.marca","vehiculo.submarca", "vehiculo.modelo", "vehiculo.tipo", "vehiculo.numSerie", "vehiculo.holograma", "propietario.nombre as propietario", "segmento.nombre as segmento")
+            ->where('vehiculo.id', '=', intval($id))
+            ->get();
+        return $vehiculo;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

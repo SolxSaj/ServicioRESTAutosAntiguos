@@ -11,6 +11,7 @@ use App\Http\Controllers\AreaConstructicaController;
 use App\Http\Controllers\AreaConstructivaController;
 use App\Models\AreaConstructiva;
 use App\Models\EvaluacionVehiculo;
+use App\Http\Controllers\DictamenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,7 +47,7 @@ Route::get('/criterios/{folio}', [CriterioEspecificoController::class, 'index'])
 Route::post('/criterios', [CriterioEspecificoController::class, 'store']);
 
 Route::get('/evaluacion/{busqueda}/{parametro}', [EvaluacionVehiculoController::class, 'index']);
-Route::get('/evaluacion', [EvaluacionVehiculoController::class, 'all']);
+Route::get('/evaluacion/{folio}/', [EvaluacionVehiculoController::class, 'getAreaByFolio']);
 
-
+Route::get('/dictamen', [DictamenController::class, 'index']);
 Route::get('/area/{folio}', [AreaConstructivaController::class, 'index']);
