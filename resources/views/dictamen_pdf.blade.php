@@ -9,13 +9,14 @@
 </head>
 <body>
     <header>
-        <h1>Universidad Politénica de Pachuca</h1>
+        <img src="{{public_path('img/logoUPP.png')}}" alt="logo UPP" class="image-position" width="80px">
+        <img src="{{public_path('img/logoHidalgo.png')}}" alt="logo Hidalgo" class="image-position" width="80px" style="float: right">
     </header>
     <footer>
-        <h1>www.upp.com</h1>
+        <h1>www.upp.edu.mx</h1>
     </footer>  
     <main>
-        <div class="first-page">
+        <div class="center-text">
             <h2>Universidad Politécnica de Pachuca</h2>
             <h2>Programa Educativo de Ingeniería Mecánica Automotriz</h2>
             <h2>PRESENTA</h2>
@@ -33,51 +34,80 @@
         <div class="page-break"></div>
         <div>
         @foreach ($vehiculo as $auto)
-        <h3>Datos del Vehiculo</h3>
-        <table style='border-collapse: collapse'>
+        <table class="table-header">
             <tr>
+                <td class="subtitle">Datos del vehiculo</td>
                 <td>Marca:  {{$auto->marca}}</td>
-                <td><blockquote>Tipo:   {{$auto->tipo}}</blockquote></td>   
+                <td>Tipo:   {{$auto->tipo}}</td>   
             </tr>
             <tr>
+                <td></td>
                 <td>Submarca:  {{$auto->submarca}}</td>
-                <td><blockquote>No. de serie:   {{$auto->numSerie}}</blockquote></td>
+                <td>No. de serie:   {{$auto->numSerie}}</td>
             </tr>
             <tr>
+                <td></td>
                 <td>Modelo:  {{$auto->modelo}}</td>
-                <td><blockquote>Propietario:   {{$auto->propietario}}</blockquote></td>
+                <td>Propietario:   {{$auto->propietario}}</td>
             </tr>
             <tr>
+                <td></td>
                 <td>Segmento:  {{$auto->segmento}}</td>
-                <td><blockquote>Holograma:   {{$auto->holograma}}</blockquote></td>
+                <td>Holograma:   {{$auto->holograma}}</td>
             </tr>
         </table>
         @endforeach
-
+        <h3 class="subtittle">Evaluación obtenida</h3>
+        <div>
+            <table class="center">
+                <tr>
+                    <th class="border-table">Areas constructivas</th>
+                    <th class="border-table">Maximo</th>
+                    <th class="border-table">Originalidad</th>
+                    <th class="border-table">Funcionalidad</th>
+                </tr>
+                @foreach ($areasConstructivas as $area)
+                    <tr>
+                        <td class="border-table">{{$area->nombre}}</td>
+                        <td class="border-table">{{$area->maximo}}</td>
+                        <td class="border-table">{{$area->original}}</td>
+                        <td class="border-table">{{$area->funcionalidad}}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+        <h3 class="subtittle">De los anterior se sugiere lo siguiente: </h3>
         @foreach ($areasConstructivas as $area)
-            <ol>
-                <li>{{$area->nombre}}</li>
-                <li>{{$area->maximo}}</li>
-                <li>{{$area->original}}</li>
-                <li>{{$area->funcionalidad}}</li>
-                @php
-                    $cadenaActual = $area->sitActual;
-                    $cadenaSugerencias = $area->sugerencias;
-                    $separador = "-";
-                    $listaActuales = explode($separador, $cadenaActual);
-                    $listaSugerencias = explode($separador, $cadenaSugerencias);
-                @endphp
-                <ol type="A">
-                    @foreach ($listaActuales as $actual)
-                        <li>{{$actual}}</li>
-                    @endforeach
-                </ol>
-                <ol type="*">
-                    @foreach ($listaSugerencias as $sugerencia)
-                        <li>{{$sugerencia}}</li>
-                    @endforeach
-                </ol>
-            </ol>
+            <h4 class="center-text">{{$area->nombre}} {{$area->original}}% de originalidad {{$area->funcionalidad}}% de funcionalidad</h4>
+            <table class="center">
+                <tr>
+                    <th>Situación actual: </th>
+                    <th>Sugerencias: </th>
+                </tr>
+                <tr>
+                    @php
+                        $cadenaActual = $area->sitActual;
+                        $cadenaSugerencias = $area->sugerencias;
+                        $separador = "-";
+                        $listaActuales = explode($separador, $cadenaActual);
+                        $listaSugerencias = explode($separador, $cadenaSugerencias);
+                    @endphp
+                    <td>
+                        <ol type="*">
+                            @foreach ($listaActuales as $actual)
+                                <li>{{$actual}}</li>
+                            @endforeach
+                        </ol>
+                    </td>
+                    <td>
+                        <ol type="*">
+                            @foreach ($listaSugerencias as $sugerencia)
+                                <li>{{$sugerencia}}</li>
+                            @endforeach
+                        </ol>
+                    </td>
+                </tr>
+            </table>
         @endforeach
         </div>
     </main> 
