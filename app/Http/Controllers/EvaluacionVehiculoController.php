@@ -46,6 +46,12 @@ class EvaluacionVehiculoController extends Controller
         return $evaluacionVehiculo;
     }
 
+    public function all(){
+        $evaluacionVehiculo = EvaluacionVehiculo::all();
+
+        return $evaluacionVehiculo;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

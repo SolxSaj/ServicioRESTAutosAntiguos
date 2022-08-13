@@ -25,6 +25,12 @@
           </div>
           <div id="content-Title">
             <p class=" font-weight-bold display-2">Evaluaciones de vehículos</p><br>
+            <v-btn class=" pa-5 cyan darken-3" block dark color="#00B0FF" @click="buscar()">
+              <v-icon dark>mdi-plus</v-icon>Busqueda filtrada
+            </v-btn>
+            <v-btn class=" pa-5 cyan darken-3" block dark color="#00B0FF" @click="mostrar()">
+              <v-icon dark>mdi-plus</v-icon>Consulta general
+            </v-btn>
           </div>
         </v-flex>
         <v-card class="mx-auto mt-5" max-width="1280" elevation="8">
@@ -60,6 +66,26 @@
             </template>
           </v-simple-table>
         </v-card>
+
+        <v-dialog v-model="dialog" max-width="500">
+          <v-card>
+            <v-card-title class="cyan darken-3 white--text">Busqueda filtrada</v-card-title>
+            <v-card-text>
+              <v-form>
+                <v-container>
+                  <v-text-field v-model="busqueda" placeholder="Ingresa el criterio por el que deseas buscar"></v-text-field>
+                  <v-text-field v-model="parametro" placeholder="Ingresa el parámetro"></v-text-field>
+                </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn @click="dialog=false" dark class="amber darken-3">Cancelar</v-btn>
+              <v-btn @click="filtro()" type="submit" color="teal" dark>Buscar</v-btn>
+            </v-card-actions>
+            </v-form>
+          </v-card>
+        </v-dialog>
+
       </v-main>
     </v-app>
   </div>
@@ -84,7 +110,8 @@
         return {
           evaluaciones: [],
           dialog: false,
-          operacion: '',
+          busqueda: '',
+          parametro: '',
           evaluacion: {
             id: null,
             folio: '',
@@ -99,11 +126,23 @@
       methods: {
         //MÉTODOS PARA EL CRUD
         mostrar: function () {
-          axios.get(url + "folio" + "/" + "1F17AB")
+          axios.get(url)
             .then(response => {
               this.evaluaciones = response.data;
+              this.dialog = false;
             })
         },
+        filtro: function(){
+          axios.get(url + this.busqueda + "/" + this.parametro)
+          .then(response => {
+            this.evaluaciones = response.data;
+          }) 
+        },
+        buscar: function(){
+          this.dialog = true;
+          this.busqueda = '';
+          this.parametro = '';
+        }
       }
     });
   </script>

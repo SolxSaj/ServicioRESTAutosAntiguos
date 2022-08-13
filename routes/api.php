@@ -46,6 +46,7 @@ Route::get('/criterios/{folio}', [CriterioEspecificoController::class, 'index'])
 Route::post('/criterios', [CriterioEspecificoController::class, 'store']);
 
 Route::get('/evaluacion/{busqueda}/{parametro}', [EvaluacionVehiculoController::class, 'index']);
+Route::get('/evaluacion', [EvaluacionVehiculoController::class, 'all']);
 
 
 Route::get('/area/{folio}', [AreaConstructivaController::class, 'index']);
