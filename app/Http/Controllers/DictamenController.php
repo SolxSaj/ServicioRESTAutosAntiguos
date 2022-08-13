@@ -11,10 +11,10 @@ Use PDF;
 
 class DictamenController extends Controller
 {
-    public function index()
+    public function index(int $id, String $folio)
     {
-        $vehiculo = VehiculoController::getVehiculoById(2);
-        $areasConstructivas = EvaluacionVehiculoController::getAreaByFolio('1C22CD');
+        $vehiculo = VehiculoController::getVehiculoById($id);
+        $areasConstructivas = EvaluacionVehiculoController::getAreaByFolio($folio);
         $pdf = PDF::loadView('dictamen_pdf', ['areasConstructivas'=>$areasConstructivas, 'vehiculo'=> $vehiculo]);
         return $pdf->stream();
     }

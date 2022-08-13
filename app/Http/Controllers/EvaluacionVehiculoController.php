@@ -46,6 +46,12 @@ class EvaluacionVehiculoController extends Controller
         return $evaluacionVehiculo;
     }
 
+    /*
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+
     public static function getAreaByFolio(String $folio){
         $areasConstructivas = EvaluacionVehiculo::join("areaconstructiva", "evaluacionvehiculo.id", "=", "areaconstructiva.idEvaluacion")
             ->select("areaconstructiva.nombre", "areaconstructiva.maximo", "areaconstructiva.original", "areaconstructiva.funcionalidad", "areaconstructiva.sitActual", "areaconstructiva.sugerencias")
@@ -54,11 +60,12 @@ class EvaluacionVehiculoController extends Controller
         return $areasConstructivas;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function all(){
+        $evaluacionVehiculo = EvaluacionVehiculo::all();
+
+        return $evaluacionVehiculo;
+    }
+
     public function create()
     {
         //

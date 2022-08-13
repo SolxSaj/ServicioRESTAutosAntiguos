@@ -47,7 +47,8 @@ Route::get('/criterios/{folio}', [CriterioEspecificoController::class, 'index'])
 Route::post('/criterios', [CriterioEspecificoController::class, 'store']);
 
 Route::get('/evaluacion/{busqueda}/{parametro}', [EvaluacionVehiculoController::class, 'index']);
+Route::get('/evaluacion', [EvaluacionVehiculoController::class, 'all']);
 Route::get('/evaluacion/{folio}/', [EvaluacionVehiculoController::class, 'getAreaByFolio']);
 
-Route::get('/dictamen', [DictamenController::class, 'index']);
+Route::get('/dictamen/{id}/{folio}', [DictamenController::class, 'index']);
 Route::get('/area/{folio}', [AreaConstructivaController::class, 'index']);
