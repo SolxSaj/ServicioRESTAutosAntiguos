@@ -4,7 +4,7 @@
 }
 
 body {
-    margin: 4cm 1cm 3.5cm;
+    margin: 4cm 1cm 3cm;
     border: purple 3px solid;
     padding: 0.5cm 1cm 0.5cm;
 }
@@ -32,9 +32,7 @@ footer {
     left: 0cm;
     right: 0cm;
     height: 3cm;
-    color: purple;
     text-align: center;
-    line-height: 35px;
 }
 
 .table-header{

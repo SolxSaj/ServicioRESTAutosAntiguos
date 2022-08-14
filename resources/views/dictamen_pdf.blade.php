@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{public_path('css/app.css')}}" rel="stylesheet">
-    <title>PDF</title>
+    <title>Dictamen</title>
 </head>
 <body>
     <header>
@@ -13,7 +13,9 @@
         <img src="{{public_path('img/logoHidalgo.png')}}" alt="logo Hidalgo" class="image-position" width="80px" style="float: right">
     </header>
     <footer>
-        <h1>www.upp.edu.mx</h1>
+        <h5>Carr. Pachuca - Cd. Sahagún km 20, Ex-Hacienda de Santa Bárbara</h5>
+        <h5>Zempoala, Hidalgo, C.P. 43830, Tel: 771 5477 510</h5>
+        <h5 >www.upp.edu.mx</h5>
     </footer>  
     <main>
         <div class="center-text">

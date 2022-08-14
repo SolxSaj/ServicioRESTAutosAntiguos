@@ -51,4 +51,5 @@ Route::get('/evaluacion', [EvaluacionVehiculoController::class, 'all']);
 Route::get('/evaluacion/{folio}/', [EvaluacionVehiculoController::class, 'getAreaByFolio']);
 
 Route::get('/dictamen/{id}/{folio}', [DictamenController::class, 'index']);
+Route::get('/predictamen/{id}/{folio}', [DictamenController::class, 'predictamen']);
 Route::get('/area/{folio}', [AreaConstructivaController::class, 'index']);
