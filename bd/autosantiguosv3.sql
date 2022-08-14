@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 19-07-2022 a las 18:20:19
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Host: 127.0.0.1
+-- Generation Time: Aug 13, 2022 at 06:40 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `autosantiguosv2`
+-- Database: `autosantiguosv2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `areaconstructiva`
+-- Table structure for table `areaconstructiva`
 --
 
 CREATE TABLE `areaconstructiva` (
@@ -33,29 +33,33 @@ CREATE TABLE `areaconstructiva` (
   `maximo` float NOT NULL,
   `original` float NOT NULL,
   `funcionalidad` float NOT NULL,
-  `sitActual` varchar(45) NOT NULL,
-  `sugerencias` varchar(500) NOT NULL,
+  `sitActual` varchar(1000) NOT NULL,
+  `sugerencias` varchar(1000) NOT NULL,
   `idEvaluacion` int(9) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `areaconstructiva`
+-- Dumping data for table `areaconstructiva`
 --
 
 INSERT INTO `areaconstructiva` (`id`, `nombre`, `maximo`, `original`, `funcionalidad`, `sitActual`, `sugerencias`, `idEvaluacion`, `updated_at`, `created_at`) VALUES
-(1, 'Sistema Alterno de Motor', 0, 0, 0, 'Buen estado', 'Ninguna', 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'Sistemas Alternos de Motor', 20, 10.3, 5, 'Suciedad de polvo y aceite.-Bateria en mal estado.-Cables y conexiones en mal estado.-Soportes y sujecciones no compatible con el año del vehiculo. ', 'Limpieza general de sistema de motor.-Cambiar bateria.-Restaurar o cambiar cables y conexiones.-Restaurar o cambiar soportes y sujecciones por los del vehiculo.', 2, '2022-08-02 19:27:10', '2022-08-02 19:27:10'),
+(2, 'Generales de Motor', 10, 6.1, 4, 'Fuga de aceite en el deposito de aceite.-Desgaste de tapon de deposito de aceite.-Desgaste en sellos.', 'Limpieza general de motor.-Generar un plan de mantenimiento con su mecanico de confianza.-Corregir fugas de aceite.-Cambiar tapon de deposito de aceite.Cambiar sellos.', 2, '2022-08-02 19:39:58', '2022-08-02 19:39:58'),
+(3, 'Sistemas Automotrices', 30, 30, 10.4, 'Mantenimiento nulo.-Se puede observar suciedad en los componentes.-Fuga de aceite en la transmisión.-Mangueras quemadas, fisuradas y/o en mal estado.-Presenta oxido en sujecciones.', 'Realizar limpieza general en los sistemas del vehículo (cepillado y engrasado).-Verificar frecuentemente los niveles de los fluidos (líquido de frenos y aceite).-Crear un sistema de mantenimiento periódico con su mecánico de confianza.', 2, '2022-08-02 20:54:24', '2022-08-02 20:54:24'),
+(4, 'Carroceria', 20, 16.6, 9.3, 'Ausencia de mantenimiento a pintura y hojalateria.-Estribos en mal estado.-Ausencia de mantenimiento en bisagras.', 'Conservar interiores y pintura en buen estado, dar mantenimiento periódico y conservar la originalidad del mismo, cambiar piezas originales procurando que sean del mismo modelo y año del vehículo.-Dar periódicamente mantenimiento y cuidado a la pintura, procurar no exponer o dejar a la interperie por demasiado tiempo.-Dar cuidado y mantenimiento a interiores, procurando remplazar piezas originales, conservar asientos, calaveras, tablero, faros, etc todo original. ', 2, '2022-08-02 20:59:49', '2022-08-02 20:59:49'),
+(5, 'Interiores', 20, 13.7, 7.9, 'Falta de mantenimiento en vestiduras (limpieza).-Tapicería desgastada (cielo y piso).-Falta de tapicería, limpieza, hojalatería en maletero.-Tablero con desgaste y rayaduras.-Falta de organización en cableado de tablero y componentes eléctricos.-Desgaste y rayaduras en molduras y manijas de interiores.', 'Lavado de vestiduras y corrección de rasgaduras y desgaste del tapizado en asientos.Mantenimiento correctivo y adecuado al cielo y piso.-Restauración completa de maletero.-Reemplazo de componentes en mal estado y mantenimiento correctivo.-Organizar adecuadamente cad línea de cableado, agregar componentes de sujeción.-Reemplazar componentes en mal estado y dar mantenimiento correctivo a cada moldura y manijas en mal estado.', 2, '2022-08-02 21:07:35', '2022-08-02 21:07:35');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `areaconstructivaespecifica`
+-- Table structure for table `areaconstructivaespecifica`
 --
 
 CREATE TABLE `areaconstructivaespecifica` (
   `id` int(9) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
+  `nombreArea` varchar(45) NOT NULL,
   `totalOriginalidad` float NOT NULL,
   `totalFuncionalidad` float NOT NULL,
   `idArea` int(9) NOT NULL,
@@ -64,33 +68,41 @@ CREATE TABLE `areaconstructivaespecifica` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `areaconstructivaespecifica`
+-- Dumping data for table `areaconstructivaespecifica`
 --
 
-INSERT INTO `areaconstructivaespecifica` (`id`, `nombre`, `totalOriginalidad`, `totalFuncionalidad`, `idArea`, `updated_at`, `created_at`) VALUES
+INSERT INTO `areaconstructivaespecifica` (`id`, `nombreArea`, `totalOriginalidad`, `totalFuncionalidad`, `idArea`, `updated_at`, `created_at`) VALUES
 (1, 'Sistema de Carga y Arranque', 0, 0, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `criteriosespecificos`
+-- Table structure for table `criteriosespecificos`
 --
 
 CREATE TABLE `criteriosespecificos` (
   `id` int(9) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
+  `nombreCriterio` varchar(100) NOT NULL,
   `observacion` varchar(300) NOT NULL,
   `originalidad` varchar(5) NOT NULL,
-  `Evaluacion` int(9) NOT NULL,
+  `evaluacion` int(9) NOT NULL,
   `idAreaEspecifica` int(9) NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `criteriosespecificos`
+--
+
+INSERT INTO `criteriosespecificos` (`id`, `nombreCriterio`, `observacion`, `originalidad`, `evaluacion`, `idAreaEspecifica`, `updated_at`, `created_at`) VALUES
+(1, 'Bateria', 'Se encuentra en buen estado', 'AU', 5, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Alternador', 'Buen estado', 'OR', 3, 1, '2022-08-02 19:18:56', '2022-08-02 19:18:56');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `evaluacionvehiculo`
+-- Table structure for table `evaluacionvehiculo`
 --
 
 CREATE TABLE `evaluacionvehiculo` (
@@ -103,16 +115,17 @@ CREATE TABLE `evaluacionvehiculo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `evaluacionvehiculo`
+-- Dumping data for table `evaluacionvehiculo`
 --
 
 INSERT INTO `evaluacionvehiculo` (`id`, `folio`, `version`, `idVehiculo`, `updated_at`, `created_at`) VALUES
-(1, '1F17AB', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, '1F17AB', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, '1C22CD', 1, 2, '2022-08-02 20:52:46', '2022-08-02 20:52:46');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `imagenes`
+-- Table structure for table `imagenes`
 --
 
 CREATE TABLE `imagenes` (
@@ -126,7 +139,7 @@ CREATE TABLE `imagenes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `propietario`
+-- Table structure for table `propietario`
 --
 
 CREATE TABLE `propietario` (
@@ -137,7 +150,7 @@ CREATE TABLE `propietario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `propietario`
+-- Dumping data for table `propietario`
 --
 
 INSERT INTO `propietario` (`id`, `nombre`, `updated_at`, `created_at`) VALUES
@@ -146,7 +159,7 @@ INSERT INTO `propietario` (`id`, `nombre`, `updated_at`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `segmento`
+-- Table structure for table `segmento`
 --
 
 CREATE TABLE `segmento` (
@@ -157,16 +170,17 @@ CREATE TABLE `segmento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `segmento`
+-- Dumping data for table `segmento`
 --
 
 INSERT INTO `segmento` (`id`, `nombre`, `updated_at`, `created_at`) VALUES
-(1, 'prueba', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'prueba', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Sedan', '2022-08-02 20:00:28', '2022-08-02 20:00:28');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuario`
+-- Table structure for table `usuario`
 --
 
 CREATE TABLE `usuario` (
@@ -177,10 +191,18 @@ CREATE TABLE `usuario` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `user`, `password`, `updated_at`, `created_at`) VALUES
+(1, 'cris@gmail', '123456', '2022-08-05 18:18:48', '2022-08-05 18:18:48'),
+(2, 'adminl', '123456', '2022-08-05 23:23:39', '2022-08-05 23:23:39');
+
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `vehiculo`
+-- Table structure for table `vehiculo`
 --
 
 CREATE TABLE `vehiculo` (
@@ -198,171 +220,171 @@ CREATE TABLE `vehiculo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `vehiculo`
+-- Dumping data for table `vehiculo`
 --
 
 INSERT INTO `vehiculo` (`id`, `marca`, `submarca`, `modelo`, `tipo`, `numSerie`, `holograma`, `idPropietario`, `idSegmento`, `updated_at`, `created_at`) VALUES
-(1, 'Nissan', 'March', 2018, 'Hashback', '123456789', '2', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(1, 'Nissan', 'March', 2018, 'Hashback', '123456789', '2', 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(2, 'Chevrolet', 'Malibu', 1969, '2 puertas', '13537JLDS02727', 'AA-001-2022', 1, 2, '2022-08-02 20:00:58', '2022-08-02 20:00:58');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `areaconstructiva`
+-- Indexes for table `areaconstructiva`
 --
 ALTER TABLE `areaconstructiva`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idEvaluacion` (`idEvaluacion`);
 
 --
--- Indices de la tabla `areaconstructivaespecifica`
+-- Indexes for table `areaconstructivaespecifica`
 --
 ALTER TABLE `areaconstructivaespecifica`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idArea` (`idArea`);
 
 --
--- Indices de la tabla `criteriosespecificos`
+-- Indexes for table `criteriosespecificos`
 --
 ALTER TABLE `criteriosespecificos`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idAreaEspecifica` (`idAreaEspecifica`);
 
 --
--- Indices de la tabla `evaluacionvehiculo`
+-- Indexes for table `evaluacionvehiculo`
 --
 ALTER TABLE `evaluacionvehiculo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idVehiculo` (`idVehiculo`);
 
 --
--- Indices de la tabla `imagenes`
+-- Indexes for table `imagenes`
 --
 ALTER TABLE `imagenes`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idArea` (`idArea`);
 
 --
--- Indices de la tabla `propietario`
+-- Indexes for table `propietario`
 --
 ALTER TABLE `propietario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `segmento`
+-- Indexes for table `segmento`
 --
 ALTER TABLE `segmento`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuario`
+-- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `vehiculo`
+-- Indexes for table `vehiculo`
 --
 ALTER TABLE `vehiculo`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `idPropietario` (`idPropietario`),
-  ADD KEY `idSegmento` (`idSegmento`);
+  ADD KEY `idPropietario` (`idPropietario`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `areaconstructiva`
+-- AUTO_INCREMENT for table `areaconstructiva`
 --
 ALTER TABLE `areaconstructiva`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `areaconstructivaespecifica`
+-- AUTO_INCREMENT for table `areaconstructivaespecifica`
 --
 ALTER TABLE `areaconstructivaespecifica`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `criteriosespecificos`
+-- AUTO_INCREMENT for table `criteriosespecificos`
 --
 ALTER TABLE `criteriosespecificos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `evaluacionvehiculo`
+-- AUTO_INCREMENT for table `evaluacionvehiculo`
 --
 ALTER TABLE `evaluacionvehiculo`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `imagenes`
+-- AUTO_INCREMENT for table `imagenes`
 --
 ALTER TABLE `imagenes`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `propietario`
+-- AUTO_INCREMENT for table `propietario`
 --
 ALTER TABLE `propietario`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT de la tabla `segmento`
+-- AUTO_INCREMENT for table `segmento`
 --
 ALTER TABLE `segmento`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `usuario`
+-- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `vehiculo`
+-- AUTO_INCREMENT for table `vehiculo`
 --
 ALTER TABLE `vehiculo`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `areaconstructiva`
+-- Constraints for table `areaconstructiva`
 --
 ALTER TABLE `areaconstructiva`
   ADD CONSTRAINT `areaconstructiva_ibfk_1` FOREIGN KEY (`idEvaluacion`) REFERENCES `evaluacionvehiculo` (`id`);
 
 --
--- Filtros para la tabla `areaconstructivaespecifica`
+-- Constraints for table `areaconstructivaespecifica`
 --
 ALTER TABLE `areaconstructivaespecifica`
   ADD CONSTRAINT `areaconstructivaespecifica_ibfk_1` FOREIGN KEY (`idArea`) REFERENCES `areaconstructiva` (`id`);
 
 --
--- Filtros para la tabla `criteriosespecificos`
+-- Constraints for table `criteriosespecificos`
 --
 ALTER TABLE `criteriosespecificos`
   ADD CONSTRAINT `criteriosespecificos_ibfk_3` FOREIGN KEY (`idAreaEspecifica`) REFERENCES `areaconstructivaespecifica` (`id`);
 
 --
--- Filtros para la tabla `evaluacionvehiculo`
+-- Constraints for table `evaluacionvehiculo`
 --
 ALTER TABLE `evaluacionvehiculo`
   ADD CONSTRAINT `evaluacionvehiculo_ibfk_1` FOREIGN KEY (`idVehiculo`) REFERENCES `vehiculo` (`id`);
 
 --
--- Filtros para la tabla `imagenes`
+-- Constraints for table `imagenes`
 --
 ALTER TABLE `imagenes`
   ADD CONSTRAINT `imagenes_ibfk_1` FOREIGN KEY (`idArea`) REFERENCES `areaconstructiva` (`id`);
 
 --
--- Filtros para la tabla `vehiculo`
+-- Constraints for table `vehiculo`
 --
 ALTER TABLE `vehiculo`
   ADD CONSTRAINT `vehiculo_ibfk_1` FOREIGN KEY (`idPropietario`) REFERENCES `propietario` (`id`),
