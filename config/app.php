@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'PDF' => Barryvdh\DomPDF\Facade::class,
+    'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
     
     'name' => env('APP_NAME', 'Laravel'),
 

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\EvaluacionVehiculoController;
 use App\Http\Controllers\VehiculoController;
 //use Barryvdh\DomPDF\Facade as PDF;
-Use PDF;
+use PDF;
 
 class DictamenController extends Controller
 {
