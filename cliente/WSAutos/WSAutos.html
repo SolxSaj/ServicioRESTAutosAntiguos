@@ -54,10 +54,10 @@
                   <td class=" font-weight-bold text-center">{{ evaluacion.version }}</td>
                   <td class=" font-weight-bold text-center">{{ evaluacion.idVehiculo }}</td>
                   <td class=" text-center">
-                    <v-btn dark class="amber darken-3" small @click="dictamen(evaluacion.idVehiculo, evaluacion.folio)">
+                    <v-btn dark class="amber darken-3" small @click="dictamen(evaluacion.idVehiculo,evaluacion.folio)">
                       <v-icon>mdi-pencil</v-icon>Dictamen
                     </v-btn>
-                    <v-btn dark class="red accent-3" small @click="">
+                    <v-btn dark class="red accent-3" small @click="predictamen(evaluacion.idVehiculo,evaluacion.folio)">
                       <v-icon>mdi-clipboard</v-icon>Reporte
                     </v-btn>
                   </td>
@@ -103,6 +103,7 @@
     //? hacemos referencia a nuestro recursos de la api
     let url = 'http://127.0.0.1:8000/api/evaluacion/';
     let dictamen = 'http://127.0.0.1:8000/api/dictamen/';
+    let predictamen = 'http://127.0.0.1:8000/api/predictamen/';
 
     new Vue({
       el: '#app',
@@ -145,7 +146,10 @@
           this.parametro = '';
         },
         dictamen: function(id, folio){
-          axios.get(dictamen + "/" + id + "/" + folio);  
+          window.location.href = dictamen + id + '/' + folio;
+        },
+        predictamen: function(id, folio){
+          window.location.href = predictamen + id + '/' + folio;
         }
       }
     });
