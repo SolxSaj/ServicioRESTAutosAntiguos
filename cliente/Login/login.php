@@ -12,10 +12,25 @@
         <div class="form-body">
             <img src="C:\xampp\htdocs\ServicioRESTAutosAntiguos\cliente\Login\Login.png" alt="user-login">
             <p class="text">Bienvenido Ingresa Credenciales</p>
-            <form class="login-form" method="get">
-                <input type="text" placeholder="Email o nombre de usuario" name="user">
+            <form class="login-form" method="post">
+
+               
+                
+            <?php
+                include("conexion_bd.php");
+                include("controlador.php");
+                ?>
+                
+
+
+                <input type="text" placeholder="Email o nombre de usuario" name="usuario">
+
                 <input type="password" placeholder="Contraseña" name="password">
-                <button @click="validar()" type="submit">Iniciar Sesión</button>
+
+
+                <input name="btningresar" class="btn" type="submit" value="INICIAR SESION">
+
+                
             </form>
         </div>
 
@@ -61,13 +76,15 @@
             },
             methods: {
                 validar: function(){
-                    user = document.getElementsByName("user").value;
-                    password = document.getElementsByName("password").value;
-                    console.log(user + password);
+                    //user = document.getElementsByName("user").value;
+                    //password = document.getElementsByName("password").value;
+                    //console.log(user + password);
                     axios.get(url + user + "/" + password)
                         .then(response =>{
                             this.usuarios = response.data;
-                            console.log(this.usuarios);
+                            if(user != null){
+                                window.location.href = predictamen + id + '/' + folio;
+                            }
                         });
                 }
             }
