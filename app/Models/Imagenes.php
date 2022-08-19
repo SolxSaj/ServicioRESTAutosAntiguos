@@ -10,7 +10,7 @@ class Imagenes extends Model
     use HasFactory;
     protected $table = "imagenes";
     protected $fillable = [
-        'idImagen',
+        'id',
         'imagen',
         'idArea'
     ];

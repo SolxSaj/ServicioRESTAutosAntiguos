@@ -35,49 +35,62 @@
         </div>
         <div class="page-break"></div>
         <div>
-        @foreach ($vehiculo as $auto)
-        <table class="table-header">
-            <tr>
-                <td class="subtitle">Datos del vehiculo</td>
-                <td>Marca:  {{$auto->marca}}</td>
-                <td>Tipo:   {{$auto->tipo}}</td>   
-            </tr>
-            <tr>
-                <td></td>
-                <td>Submarca:  {{$auto->submarca}}</td>
-                <td>No. de serie:   {{$auto->numSerie}}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Modelo:  {{$auto->modelo}}</td>
-                <td>Propietario:   {{$auto->propietario}}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Segmento:  {{$auto->segmento}}</td>
-                <td>Holograma:   {{$auto->holograma}}</td>
-            </tr>
-        </table>
-        @endforeach
-        <h3 class="subtittle">Evaluación obtenida</h3>
-        <div>
-            <table class="center">
+            <div>
+            @foreach ($vehiculo as $auto)
+            <table class="table-header">
                 <tr>
-                    <th class="border-table">Areas constructivas</th>
-                    <th class="border-table">Maximo</th>
-                    <th class="border-table">Originalidad</th>
-                    <th class="border-table">Funcionalidad</th>
+                    <td class="subtitle">Datos del vehiculo</td>
+                    <td>Marca:  {{$auto->marca}}</td>
+                    <td>Tipo:   {{$auto->tipo}}</td>   
                 </tr>
-                @foreach ($areasConstructivas as $area)
-                    <tr>
-                        <td class="border-table">{{$area->nombre}}</td>
-                        <td class="border-table">{{$area->maximo}}</td>
-                        <td class="border-table">{{$area->original}}</td>
-                        <td class="border-table">{{$area->funcionalidad}}</td>
-                    </tr>
-                @endforeach
+                <tr>
+                    <td></td>
+                    <td>Submarca:  {{$auto->submarca}}</td>
+                    <td>No. de serie:   {{$auto->numSerie}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Modelo:  {{$auto->modelo}}</td>
+                    <td>Propietario:   {{$auto->propietario}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Segmento:  {{$auto->segmento}}</td>
+                    <td>Holograma:   {{$auto->holograma}}</td>
+                </tr>
             </table>
+            @endforeach
+            </div>
+            <div class="div_images" >
+                @foreach ($imagenes as $img)
+                    @php
+                        $imagenBase64 = "data:image/jpg;base64," . base64_encode($img->imagen);
+                    @endphp 
+                        <img src="{{$imagenBase64}}" class="images">
+                @endforeach
+            </div>
         </div>
+        <div class="page-break"></div>
+        <div>
+            <h3 class="subtittle">Evaluación obtenida</h3>
+            <div>
+                <table class="center">
+                    <tr>
+                        <th class="border-table">Areas constructivas</th>
+                        <th class="border-table">Maximo</th>
+                        <th class="border-table">Originalidad</th>
+                        <th class="border-table">Funcionalidad</th>
+                    </tr>
+                    @foreach ($areasConstructivas as $area)
+                        <tr>
+                            <td class="border-table">{{$area->nombre}}</td>
+                            <td class="border-table">{{$area->maximo}}</td>
+                            <td class="border-table">{{$area->original}}</td>
+                            <td class="border-table">{{$area->funcionalidad}}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
         <h3 class="subtittle">De los anterior se sugiere lo siguiente: </h3>
         @foreach ($areasConstructivas as $area)
             <h4 class="center-text">{{$area->nombre}} {{$area->original}}% de originalidad {{$area->funcionalidad}}% de funcionalidad</h4>
