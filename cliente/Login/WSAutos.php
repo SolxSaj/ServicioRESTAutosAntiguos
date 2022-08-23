@@ -32,9 +32,9 @@
               <v-icon dark>mdi-plus</v-icon>Consulta general
             </v-btn>
           </div>
-          <div id="content-img">
+          <!--<div id="content-img">
             <v-img max-width="200" src="Hidalgo.png" style="margin-left: 100px;"></v-img>
-          </div>
+          </div>-->
         </v-flex>
         <v-card class="mx-auto mt-5" max-width="1280" elevation="8">
           <!-- Tabla y formulario -->

@@ -12,7 +12,7 @@ class ImagenesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index()
     {
         $imagen = Imagenes::all();
         return $imagen;

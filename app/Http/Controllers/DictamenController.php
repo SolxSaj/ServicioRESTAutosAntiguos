@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Controllers\EvaluacionVehiculoController;
 use App\Http\Controllers\VehiculoController;
+use App\Http\Controllers\ImagenesController;
 use Carbon\Carbon;
 Use PDF;
 
@@ -15,7 +16,8 @@ class DictamenController extends Controller
     {
         $vehiculo = VehiculoController::getVehiculoById($id);
         $areasConstructivas = EvaluacionVehiculoController::getAreaByFolio($folio);
-        $pdf = PDF::loadView('dictamen_pdf', ['areasConstructivas'=>$areasConstructivas, 'vehiculo'=> $vehiculo]);
+        $imagenes = ImagenesController::index();
+        $pdf = PDF::loadView('dictamen_pdf', ['areasConstructivas'=>$areasConstructivas, 'vehiculo'=> $vehiculo, 'imagenes'=>$imagenes]);
         return $pdf->stream();
     }
 
