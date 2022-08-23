@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CriteriosEspecificos;
+use App\Models\AreaConstructivaEspecifica;
+use App\Models\AreaConstructiva;
 
 class CriterioEspecificoController extends Controller
 {
@@ -50,6 +52,37 @@ class CriterioEspecificoController extends Controller
         $criterioEspecifico->idAreaEspecifica = $request->idAreaEspecifica;
 
         $criterioEspecifico->save();
+
+        $areaConstructivaEspecifica = AreaConstructivaEspecifica::findOrFail($criterioEspecifico->idAreaEspecifica);
+        $areaConstructivaEspecifica->totalFuncionalidad = $areaConstructivaEspecifica->totalFuncionalidad + $criterioEspecifico->evaluacion;
+        $areaConstructivaEspecifica->save();
+
+        $areaConstructiva = AreaConstructiva::findOrFail($areaConstructivaEspecifica->idArea);
+        $areaConstructiva->funcionalidad = $areaConstructiva->funcionalidad + $areaConstructivaEspecifica->totalFuncionalidad;
+        $areaConstructiva->save();
+
+        return response("[{\"Status\": \"Alta realizada\"}]");
+    }
+
+    public function varios(Request $request){
+        foreach($request->all() as $req){
+            $criterioEspecifico = new CriteriosEspecificos();
+            $criterioEspecifico->id = $req['id'];
+            $criterioEspecifico->nombreCriterio = $req['nombreCriterio'];
+            $criterioEspecifico->observacion = $req['observacion'];
+            $criterioEspecifico->originalidad = $req['originalidad'];
+            $criterioEspecifico->evaluacion = $req['evaluacion'];
+            $criterioEspecifico->idAreaEspecifica = $req['idAreaEspecifica'];
+            $criterioEspecifico->save();
+
+            $areaConstructivaEspecifica = AreaConstructivaEspecifica::findOrFail($criterioEspecifico->idAreaEspecifica);
+            $areaConstructivaEspecifica->totalFuncionalidad = $areaConstructivaEspecifica->totalFuncionalidad + $criterioEspecifico->evaluacion;
+            $areaConstructivaEspecifica->save();
+        }
+
+        $areaConstructiva = AreaConstructiva::findOrFail($areaConstructivaEspecifica->idArea);
+        $areaConstructiva->funcionalidad = $areaConstructiva->funcionalidad + $areaConstructivaEspecifica->totalFuncionalidad;
+        $areaConstructiva->save();
 
         return response("[{\"Status\": \"Alta realizada\"}]");
     }

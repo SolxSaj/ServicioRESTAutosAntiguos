@@ -43,7 +43,9 @@ class EvaluacionVehiculoController extends Controller
             $evaluacionVehiculo = response("[{\"Status\": \"Error 404\"}]");
         }
 
-        return $evaluacionVehiculo;
+        $response = json_encode(array("evaluation" => $evaluacionVehiculo[0], "status" => "200"));
+
+        return $response;
     }
 
     /*

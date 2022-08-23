@@ -45,6 +45,7 @@ Route::delete('/vehiculo/{id}', [VehiculoController::class, 'destroy']);
 
 Route::get('/criterios/{folio}', [CriterioEspecificoController::class, 'index']);
 Route::post('/criterios', [CriterioEspecificoController::class, 'store']);
+Route::post('/criterios/multiple', [CriterioEspecificoController::class, 'varios']);
 
 Route::get('/evaluacion/{busqueda}/{parametro}', [EvaluacionVehiculoController::class, 'index']);
 Route::get('/evaluacion', [EvaluacionVehiculoController::class, 'all']);

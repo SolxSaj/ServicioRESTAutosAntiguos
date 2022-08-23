@@ -72,7 +72,7 @@
 
         <v-dialog v-model="dialog" max-width="500">
           <v-card>
-            <v-card-title class="cyan darken-3 white--text">Busqueda filtrada</v-card-title>
+            <v-card-title class="purple darken-3 white--text">Busqueda filtrada</v-card-title>
             <v-card-text>
               <v-form>
                 <v-container>
@@ -82,8 +82,8 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn @click="dialog=false" dark class="amber darken-3">Cancelar</v-btn>
-              <v-btn @click="filtro()" type="submit" color="teal" dark>Buscar</v-btn>
+              <v-btn @click="dialog=false" dark class="btn-default">Cancelar</v-btn>
+              <v-btn @click="filtro()" type="submit" color="purple darken-3" dark>Buscar</v-btn>
             </v-card-actions>
             </v-form>
           </v-card>

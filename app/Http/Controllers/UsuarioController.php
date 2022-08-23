@@ -22,14 +22,15 @@ class UsuarioController extends Controller
                                 ->get();
                                 
         }catch(Exception $e){
-            $usuario = response("Error de conexión");
+            return response("\"statys\": \"500\"");
         }
 
         if($usuario == "[]"){
-            $usuario = response("Usuario no encontrado");
+            return response("\"statys\": \"400\"");
         }
 
-        return $usuario;
+        $response = json_encode(array("evaluation" => $usuario[0], "status" => "200"));
+        return $response;
     }
 
     /**
